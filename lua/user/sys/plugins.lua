@@ -425,6 +425,10 @@ require('lazy').setup({
     install = {
         missing = true,
         colorscheme = { 'habamax' }, -- Use default Neovim colorscheme (no dependencies)
+                -- Minimal clone settings
+        filter = '--filter=blob:none',  -- Don't download blobs until needed
+        single_branch = true,            -- Only clone main branch
+        depth = 1,
     },
 
     rocks = {
