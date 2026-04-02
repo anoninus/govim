@@ -52,7 +52,7 @@ require("conform").setup({
     formatters = {
         prettier = {
             prepend_args = {
-                "--tab-width", "4",
+                "--tab-width", "2",
                 "--use-tabs", "false",
             },
         },
@@ -64,17 +64,17 @@ require("conform").setup({
         stylua = {
             prepend_args = {
                 "--indent-type", "Spaces",
-                "--indent-width", "4",
+                "--indent-width", "2",
             },
         },
         clang_format = {
             prepend_args = {
-                "-style={IndentWidth: 4, UseTab: Never}",
+                "-style={IndentWidth: 2, UseTab: Never}",
             },
         },
         shfmt = {
             prepend_args = {
-                "-i", "4",
+                "-i", "2",
             },
         },
     },

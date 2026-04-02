@@ -72,7 +72,7 @@ load_stages()
 -- =========================================================
 -- 3. Post-init
 -- =========================================================
-vim.cmd.colorscheme('tokyonight-moon')
+vim.cmd.colorscheme('catppuccin-latte')
 -- 
 local function apply_diag_hls()
     local set = vim.api.nvim_set_hl
