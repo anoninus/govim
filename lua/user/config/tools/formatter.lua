@@ -34,7 +34,7 @@ require('conform').setup({
     -- Rust
     rustfmt = {
       prepend_args = {
-        '--config', 'tab_spaces=2',
+        '--config', 'tab_spaces=4',
       },
     },
     -- Shell
@@ -55,7 +55,7 @@ require('conform').setup({
   formatters = {
     prettier = {
       prepend_args = {
-        '--tab-width', '2',
+        '--tab-width', '4',
         '--use-tabs', 'false',
       },
     },
@@ -67,17 +67,17 @@ require('conform').setup({
     stylua = {
       prepend_args = {
         '--indent-type', 'Spaces',
-        '--indent-width', '2',
+        '--indent-width', '4',
       },
     },
     clang_format = {
       prepend_args = {
-        '-style={IndentWidth: 2, UseTab: Never}',
+        '-style={IndentWidth: 4, UseTab: Never}',
       },
     },
     shfmt = {
       prepend_args = {
-        '-i', '2',
+        '-i', '4',
       },
     },
   },

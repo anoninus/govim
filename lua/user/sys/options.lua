@@ -8,8 +8,6 @@ vim.o.confirm = true
 vim.o.visualbell = false
 vim.o.errorbells = false
 
-
-
 -- Search
 vim.o.incsearch = true
 vim.o.hlsearch = true
