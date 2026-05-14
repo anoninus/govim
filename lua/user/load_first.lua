@@ -16,6 +16,8 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Leader set to space
+vim.o.winborder = 'rounded'  -- applies to all floats automatically (0.11+)
+vim.o.winminheight = 0       -- allows splits to shrink to 0 height when pinned
 vim.g.mapleader = ' '
 vim.g.maplocalleader = "'" -- Local leader
 _G.map = vim.keymap.set
