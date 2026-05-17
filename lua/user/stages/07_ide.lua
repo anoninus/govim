@@ -1,23 +1,35 @@
--- In user/stages/07_ideB.lua
-local defer = function(mod, ms) 
-  vim.defer_fn(function() require(mod) end, ms) 
-end
+-- user/stages/07_ide.lua
 
--- ide 
+-- Autosave: needs to be active immediately
+
+  -- require('user.config.ide.ide.treesitter')
+vim.schedule(function()
+  -- These just register keymaps/autocmds, cheap to load
 require('user.config.ide.ide.module_require.autosave')
--- require('user.config.ide.ide.treesitter')
-defer('user.config.ide.ide.module_require.run', 200)
-defer('user.config.ide.ide.toggleterm', 50)
-defer('user.config.ide.ide.showkey', 200)
-defer('user.config.ide.ide.whkey', 100)
-defer('user.config.ide.ide.yanky', 100)
-defer('user.config.ide.ide.undotree', 200)
-defer('user.config.ide.ide.surround', 200)
-defer('user.config.ide.ide.sessions', 200)
+  require('user.config.ide.ide.module_require.run')
+  require('user.config.ide.ide.showkey')
+  require('user.config.ide.file.leap')
+  require('user.config.ide.ide.whkey')
+  require('user.config.ide.ide.undotree')
+  require('user.config.ide.file.fzf')
+  require('user.config.ide.file.oil')
+  require('user.config.ide.ide.sessions')
+  require('user.config.ide.ide.toggleterm')
+end)
 
 
--- file
-defer('user.config.ide.file.fzf', 100)    
-defer('user.config.ide.file.leap', 100)   
-defer('user.config.ide.file.oil', 150)    
-require('user.config.ide.ide.comments')
+-- user/config/ide/ide/surround.lua
+vim.api.nvim_create_autocmd('BufReadPost', {
+  once = true,
+  callback = function()
+    require('nvim-surround').setup() -- all defaults, no custom config needed
+  end,
+})
+
+-- user/config/ide/ide/comments.lua
+vim.api.nvim_create_autocmd('BufReadPost', {
+  once = true,
+  callback = function()
+    require('Comment').setup()
+  end,
+})

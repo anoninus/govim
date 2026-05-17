@@ -1,39 +1,33 @@
--- Install both plugins
--- ibl for static indent guides
--- mini.indentscope for active scope highlighting
+ require('ibl').setup({
+     indent = {
+         char = '│',  -- or '▏' for thinner, '┊' for dotted
+         tab_char = '│',
+         highlight = { 'IblIndent' },
+         smart_indent_cap = true,
+     },
 
--- IBL Setup - subtle, always-on guides
--- require('ibl').setup({
---     indent = {
---         char = '│',  -- or '▏' for thinner, '┊' for dotted
---         tab_char = '│',
---         highlight = { 'IblIndent' },
---         smart_indent_cap = true,
---     },
---
---     whitespace = {
---         remove_blankline_trail = true,
---     },
---
---     scope = {
---         enabled = false,  -- Let mini.indentscope handle this
---     },
---
---     exclude = {
---         filetypes = {
---             'help', 'dashboard', 'neo-tree', 'Trouble', 'trouble',
---             'lazy', 'mason', 'notify', 'toggleterm', 'lazyterm',
---             'packer', 'checkhealth', 'man', 'gitcommit',
---             'TelescopePrompt', 'TelescopeResults', 'lspinfo',
---             'alpha', 'starter', '',
---         },
---         buftypes = {
---             'terminal', 'nofile', 'quickfix', 'prompt',
---         },
---     },
--- })
+     whitespace = {
+         remove_blankline_trail = true,
+     },
 
--- Mini Indentscope - animated scope highlighting
+     scope = {
+         enabled = false,  -- Let mini.indentscope handle this
+     },
+
+     exclude = {
+         filetypes = {
+             'help', 'dashboard', 'neo-tree', 'Trouble', 'trouble',
+             'lazy', 'mason', 'notify', 'toggleterm', 'lazyterm',
+             'packer', 'checkhealth', 'man', 'gitcommit',
+             'TelescopePrompt', 'TelescopeResults', 'lspinfo',
+             'alpha', 'starter', '',
+         },
+         buftypes = {
+             'terminal', 'nofile', 'quickfix', 'prompt',
+         },
+     },
+ })
+
 require('mini.indentscope').setup({
     draw = {
         delay = 50,

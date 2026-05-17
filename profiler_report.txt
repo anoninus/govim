@@ -3,103 +3,94 @@
            NEOVIM CONFIG PROFILER REPORT
 ═══════════════════════════════════════════════════════
 
-Total files tracked: 45
-Total config time: 453.56ms
+Total files tracked: 40
+Total config time: 179.93ms
 Files >50ms: 2 🔴
-Files >20ms: 6 🟡
-Files >10ms: 12 🟠
+Files >20ms: 2 🟡
+Files >10ms: 2 🟠
 
 ───────────────────────────────────────────────────────
 TOP 30 SLOWEST FILES:
 ───────────────────────────────────────────────────────
-🔴  78.46ms  user.stages.01_sys
-🔴  77.73ms  user.sys.plugins
-🟡  49.19ms  user.config.ide.file.fzf
-🟡  25.91ms  user.config.ide.ide.yanky
-🟡  22.41ms  user.config.server.LowLevel.clang
-🟡  21.77ms  user.ui.core.cokeline
-🟠  15.26ms  user.config.ide.file.oil
-🟠  14.90ms  user.stages.07_ide
-🟠  12.33ms  user.config.ide.ide.comments
-🟠  12.00ms  user.config.ide.ide.whkey
-🟠  11.83ms  user.stages.03_mini
-🟠  10.85ms  user.mini.mini_icons
-🟢   9.64ms  user.stages.08_other
-🟢   8.46ms  user.stages.05_tools
-🟢   7.98ms  user.ui.core.ibl
-🟢   7.84ms  user.config.tools.lsp
-🟢   7.43ms  user.config.ide.ide.surround
-🟢   6.78ms  user.config.ide.ide.module_require.run
-🟢   6.11ms  user.config.ide.ide.showkey
-🟢   5.09ms  user.mini.mini_notify
-🟢   5.02ms  user.config.tools.formatter
-🟢   4.20ms  user.config.ide.ide.sessions
-🟢   2.88ms  user.config.server.HighLevel.pyright
-🟢   2.79ms  user.config.tools.diagnostic
-🟢   2.63ms  user.config.server.HighLevel.lua_ls
-🟢   2.59ms  user.config.server.Web.ts_ls
-🟢   2.55ms  user.config.server.LowLevel.rust_analyzer
-🟢   1.70ms  user.config.ide.ide.module_require.autosave
-🟢   1.58ms  user.config.server.Utilities.jsonls
-🟢   1.58ms  user.config.server.Web.html
+🔴  52.72ms  user.stages.01_sys
+🔴  52.52ms  user.sys.plugins
+🟢   7.58ms  user.mini.mini_icons
+🟢   7.31ms  user.stages.05_tools
+🟢   5.37ms  user.config.tools.lsp
+🟢   5.27ms  user.config.ide.ide.showkey
+🟢   4.72ms  user.config.tools.formatter
+🟢   3.52ms  user.ui.core.statusline
+🟢   3.45ms  user.config.ide.ide.whkey
+🟢   2.98ms  user.config.ide.ide.module_require.autosave
+🟢   2.42ms  user.config.tools.navic
+🟢   2.20ms  user.config.server.HighLevel.lua_ls
+🟢   2.07ms  user.config.tools.diagnostic
+🟢   1.97ms  user.config.ide.ide.sessions
+🟢   1.81ms  user.stages.02_uiCore
+🟢   1.61ms  user.mini.mini_notify
+🟢   1.43ms  user.config.server.LowLevel.clang
+🟢   1.39ms  user.config.server.HighLevel.pyright
+🟢   1.35ms  user.config.server.LowLevel.rust_analyzer
+🟢   1.25ms  user.config.server.Utilities.jsonls
+🟢   1.19ms  user.config.server.Web.ts_ls
+🟢   1.16ms  user.sys.options
+🟢   1.13ms  user.config.tools.lspkind
+🟢   1.09ms  user.ui.core.cokeline
+🟢   1.09ms  user.config.server.Web.css_ls
+🟢   1.06ms  user.ui.core.windows
+🟢   1.06ms  user.config.ide.file.leap
+🟢   1.03ms  user.ui.core.sgt
+🟢   0.90ms  user.config.server.Web.html
+🟢   0.90ms  user.config.ide.file.fzf
 
 ───────────────────────────────────────────────────────
 FULL FILE LIST (sorted by time):
 ───────────────────────────────────────────────────────
 
 🔴 CRITICAL (>50ms) (2 files)
-   78.46ms  user.stages.01_sys
-   77.73ms  user.sys.plugins
+   52.72ms  user.stages.01_sys
+   52.52ms  user.sys.plugins
 
-🟡 HIGH (20-50ms) (4 files)
-   49.19ms  user.config.ide.file.fzf
-   25.91ms  user.config.ide.ide.yanky
-   22.41ms  user.config.server.LowLevel.clang
-   21.77ms  user.ui.core.cokeline
+🟢 LOW (5-10ms) (4 files)
+    7.58ms  user.mini.mini_icons
+    7.31ms  user.stages.05_tools
+    5.37ms  user.config.tools.lsp
+    5.27ms  user.config.ide.ide.showkey
 
-🟠 MEDIUM (10-20ms) (6 files)
-   15.26ms  user.config.ide.file.oil
-   14.90ms  user.stages.07_ide
-   12.33ms  user.config.ide.ide.comments
-   12.00ms  user.config.ide.ide.whkey
-   11.83ms  user.stages.03_mini
-   10.85ms  user.mini.mini_icons
-
-🟢 LOW (5-10ms) (9 files)
-    9.64ms  user.stages.08_other
-    8.46ms  user.stages.05_tools
-    7.98ms  user.ui.core.ibl
-    7.84ms  user.config.tools.lsp
-    7.43ms  user.config.ide.ide.surround
-    6.78ms  user.config.ide.ide.module_require.run
-    6.11ms  user.config.ide.ide.showkey
-    5.09ms  user.mini.mini_notify
-    5.02ms  user.config.tools.formatter
-
-⚪ MINIMAL (<5ms) (24 files)
-    4.20ms  user.config.ide.ide.sessions
-    2.88ms  user.config.server.HighLevel.pyright
-    2.79ms  user.config.tools.diagnostic
-    2.63ms  user.config.server.HighLevel.lua_ls
-    2.59ms  user.config.server.Web.ts_ls
-    2.55ms  user.config.server.LowLevel.rust_analyzer
-    1.70ms  user.config.ide.ide.module_require.autosave
-    1.58ms  user.config.server.Utilities.jsonls
-    1.58ms  user.config.server.Web.html
-    1.48ms  user.config.server.Web.css_ls
-    1.34ms  user.sys.options
-    1.23ms  user.ui.core.windows
-    1.10ms  user.ui.core.equalizer
-    0.94ms  user.stages.06_dap
-    0.91ms  user.sys.last_pos
-    0.90ms  user.config.ide.ide.local_module.autosave_module
-    0.88ms  user.stages.02_uiCore
-    0.85ms  user.stages.04_server
-    0.81ms  user.config.ide.ide.toggleterm
-    0.80ms  user.sys.paste_from_sys
-    0.77ms  user.ui.core.statusline
-    0.75ms  user.ui.core.sgt
-    0.72ms  user.config.ide.file.leap
+⚪ MINIMAL (<5ms) (34 files)
+    4.72ms  user.config.tools.formatter
+    3.52ms  user.ui.core.statusline
+    3.45ms  user.config.ide.ide.whkey
+    2.98ms  user.config.ide.ide.module_require.autosave
+    2.42ms  user.config.tools.navic
+    2.20ms  user.config.server.HighLevel.lua_ls
+    2.07ms  user.config.tools.diagnostic
+    1.97ms  user.config.ide.ide.sessions
+    1.81ms  user.stages.02_uiCore
+    1.61ms  user.mini.mini_notify
+    1.43ms  user.config.server.LowLevel.clang
+    1.39ms  user.config.server.HighLevel.pyright
+    1.35ms  user.config.server.LowLevel.rust_analyzer
+    1.25ms  user.config.server.Utilities.jsonls
+    1.19ms  user.config.server.Web.ts_ls
+    1.16ms  user.sys.options
+    1.13ms  user.config.tools.lspkind
+    1.09ms  user.ui.core.cokeline
+    1.09ms  user.config.server.Web.css_ls
+    1.06ms  user.ui.core.windows
+    1.06ms  user.config.ide.file.leap
+    1.03ms  user.ui.core.sgt
+    0.90ms  user.config.server.Web.html
+    0.90ms  user.config.ide.file.fzf
+    0.73ms  user.sys.paste_from_sys
+    0.72ms  user.config.ide.ide.local_module.autosave_module
+    0.70ms  user.stages.04_server
+    0.66ms  user.config.ide.ide.toggleterm
+    0.65ms  user.config.ide.file.oil
+    0.63ms  user.sys.last_pos
+    0.62ms  user.config.ide.ide.module_require.run
     0.61ms  user.config.ide.ide.undotree
+    0.55ms  user.stages.03_mini
+    0.51ms  user.stages.06_dap
 
 ═══════════════════════════════════════════════════════

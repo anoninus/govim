@@ -5,7 +5,7 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         commit = '4916d65',
-        event = 'BufReadPre',
         build = ':TSUpdate',
+        lazy = true,
     },
 }

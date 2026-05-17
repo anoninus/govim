@@ -8,14 +8,13 @@ vim.schedule(function()
   -- Buffer/status UI: only once a buffer exists
   require('user.ui.core.cokeline')
   require('user.ui.core.statusline')
-  require('user.ui.core.equalizer')
+    require('user.ui.core.ibl')      -- indent lines
 end)
 
 vim.api.nvim_create_autocmd('BufReadPost', {
   once = true,
   callback = function()
     -- These only make sense with actual file content
-    require('user.ui.core.ibl')      -- indent lines
     require('user.ui.core.windows')  -- window management
     require('user.ui.core.sgt')
   end,
