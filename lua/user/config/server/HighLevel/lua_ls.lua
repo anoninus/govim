@@ -1,7 +1,9 @@
 -- user/config/server/HighLevel/lua_ls.lua
 vim.lsp.config('lua_ls', {
+    cmd          = { 'lua-language-server' },  -- ← this is what's missing
+
   filetypes    = { 'lua' },
-  root_markers = { '.git', 'lua', 'init.lua' },
+  root_markers = { '.luarc.json', '.git' },
   settings = {
     Lua = {
       runtime     = { version = 'Lua 5.4', path = vim.split(package.path, ';') },
