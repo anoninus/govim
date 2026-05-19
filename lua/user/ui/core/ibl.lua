@@ -11,7 +11,7 @@ require('ibl').setup({
     },
 
     scope = {
-        enabled = false,  -- Let mini.indentscope handle this
+        enabled = false, -- Let mini.indentscope handle this
     },
 
     exclude = {
@@ -51,11 +51,5 @@ require('mini.indentscope').setup({
     },
 })
 
--- Force highlight override after colorscheme loads
-vim.api.nvim_create_autocmd('ColorScheme', {
-    pattern = '*',
-    callback = function()
-        vim.api.nvim_set_hl(0, 'IblIndent', { link = 'NonText' })
-        vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { link = 'NonText' })
-    end,
-})
+vim.api.nvim_set_hl(0, 'IblIndent', { link = 'NonText' })
+vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { link = 'NonText' })
