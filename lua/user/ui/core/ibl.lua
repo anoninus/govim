@@ -43,7 +43,7 @@ require('mini.indentscope').setup({
       goto_top = '[s',
       goto_bottom = ']s',
     },
-    symbol = '┃',  -- matches ibl for consistency
+    symbol = '│',  -- matches ibl for consistency
     
     options = {
         try_as_border = true,
@@ -56,11 +56,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     pattern = '*',
     callback = function()
         vim.api.nvim_set_hl(0, 'IblIndent', { link = 'NonText' })
-        vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { link = 'NonText' })  -- or 'Function'
+        vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { link = 'NonText' })
     end,
 })
---
---
--- Link to existing highlight groups for theme consistency
-vim.api.nvim_set_hl(0, 'IblIndent', { link = 'NonText' })
-vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { link = 'NonText' })
