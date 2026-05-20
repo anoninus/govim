@@ -144,7 +144,4 @@ return {
         },
     },
 
-    vim.keymap.set("n", '<leader>ri', '<cmd>Lazy load indent-blankline.nvim<cr>', {desc = "Load IBL"}),
-    vim.keymap.set("n", '<leader>rd', '<cmd>Lazy load dressing.nvim<cr>', {desc = "Load IBL"}),
-    vim.keymap.set("n", '<leader>rb', '<cmd>Lazy load blink.cmp<cr>', {desc = "Load IBL"}),
 }
