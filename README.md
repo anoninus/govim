@@ -1,4 +1,4 @@
-# 🌙 Arch-Nvim
+# 🌙 RustVim
 > The just-work distro that works out of the box for Neovim 0.12+
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.12%2B-57A143?style=flat-square&logo=neovim)
@@ -31,7 +31,7 @@
 mv ~/.config/nvim ~/.config/nvim.bak
 
 # Clone
-git clone --depth=1 https://github.com/anoninus/arch-nvim ~/.config/nvim
+git clone --depth=1 https://github.com/anoninus/RustVim ~/.config/nvim
 
 # Launch Neovim — lazy.nvim bootstraps automatically
 nvim
