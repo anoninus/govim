@@ -10,6 +10,21 @@
 
 ---
 
+## ✨ Features
+
+- **Staged boot system** — 7 numbered stages load in strict dependency order; nothing runs before it's ready
+- **Aggressive lazy loading** — LSP defers until `BufReadPre`, autopairs and snippets until `InsertEnter`
+- **Custom autosave** — debounced module with Conform/LSP format integration and per-filetype allow/deny lists
+- **Inline code runner** — run Rust, Python, Go, C/C++, JS, TS, Lua, Bash and more directly from the buffer
+- **Full LSP coverage** — 12 language servers across Game Dev, Systems, Web, Scripting and Utilities
+- **FZF-powered everything** — files, live grep, diagnostics, git, sessions — all through fzf-lua
+- **Termux-aware** — PATH, clipboard (`termux-clipboard-get`), and home/root paths all auto-detect Termux
+- **Built-in profiler** — `require()`-hooking profiler + spec timing logger for startup optimization
+- **Custom statusline** — hand-crafted, no plugin dependency, with LSP caching and tokyonight palette
+- **Which-key conflict checker** — `:CheckKeymaps` detects leader binding collisions at runtime
+
+---
+
 ## 🚀 Installation
 
 ```bash
@@ -51,26 +66,12 @@ vscode-css-language-server  vscode-html-language-server  gopls  typescript-langu
 
 ---
 
-## ✨ Features
-
-- **Staged boot system** — 7 numbered stages load in strict dependency order; nothing runs before it's ready
-- **Aggressive lazy loading** — LSP defers until `BufReadPre`, autopairs and snippets until `InsertEnter`
-- **Custom autosave** — debounced module with Conform/LSP format integration and per-filetype allow/deny lists
-- **Inline code runner** — run Rust, Python, Go, C/C++, JS, TS, Lua, Bash and more directly from the buffer
-- **Full LSP coverage** — 12 language servers across Game Dev, Systems, Web, Scripting and Utilities
-- **FZF-powered everything** — files, live grep, diagnostics, git, sessions — all through fzf-lua
-- **Termux-aware** — PATH, clipboard (`termux-clipboard-get`), and home/root paths all auto-detect Termux
-- **Built-in profiler** — `require()`-hooking profiler + spec timing logger for startup optimization
-- **Custom statusline** — hand-crafted, no plugin dependency, with LSP caching and tokyonight palette
-- **Which-key conflict checker** — `:CheckKeymaps` detects leader binding collisions at runtime
-
----
 
 ## ⌨️ Keybindings
 
 **Leader:** `<Space>` &nbsp;|&nbsp; **Local Leader:** `'`
 
-→ Full keymap reference: [Keymaps.md](./READ/Keymaps.md)
+→ Full keymap reference: [Keymaps.md](./READ/Keymaps.lua)
 
 ---
 
