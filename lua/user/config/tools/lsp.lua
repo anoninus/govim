@@ -1,31 +1,11 @@
--- user/config/tools/lsp.lua
-
-local float_opts = { border = 'rounded', max_width = 80, max_height = 20 }
-
--- Don't call capabilities.get() here — blink may not be loaded yet
--- Set handlers only, capabilities go on each server via capabilities.lua
-vim.lsp.config('*', {
-  handlers = {
-    ['textDocument/hover']         = vim.lsp.with(vim.lsp.handlers.hover, float_opts),
-    ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, float_opts),
-  },
-})
-
--- user/config/tools/lsp.lua
--- Set capabilities once on first attach, not at config time
-vim.api.nvim_create_autocmd('LspAttach', {
-  once = true,
-  callback = function()
-    local ok, blink = pcall(require, 'blink.cmp')
-    if ok then
-      vim.lsp.config('*', {
-        capabilities = blink.get_lsp_capabilities(
-          vim.lsp.protocol.make_client_capabilities()
-        ),
-      })
-    end
-  end,
-})
+local ok, blink = pcall(require, 'blink.cmp')
+if ok then
+  vim.lsp.config('*', {
+    capabilities = blink.get_lsp_capabilities(
+      vim.lsp.protocol.make_client_capabilities()
+    ),
+  })
+end
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
@@ -38,8 +18,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     local opts = { buffer = ev.buf, silent = true }
-    vim.keymap.set('n', 'K',      vim.lsp.buf.hover,          opts)
-    vim.keymap.set('i', '<C-h>',  vim.lsp.buf.signature_help, opts)
+
+    vim.keymap.set('n', 'K', function()
+      vim.lsp.buf.hover()
+    end, opts)
+
+    vim.keymap.set('i', '<C-h>', function()
+      vim.lsp.buf.signature_help()
+    end, opts)
   end,
 })
 
