@@ -11,5 +11,6 @@ vim.api.nvim_create_autocmd('BufReadPre', {
         require('user.config.server.Web.css_ls')
         require('user.config.server.Web.html')
         require('user.config.server.Web.ts_ls')
+        require('user.config.server.Web.gopls')
     end,
 })

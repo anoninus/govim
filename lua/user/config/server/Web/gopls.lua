@@ -2,8 +2,13 @@
 vim.lsp.config('gopls', {
   cmd          = { 'gopls' },
   filetypes    = { 'go', 'gomod', 'gowork', 'gotmpl' },
+  root_dir     = vim.fs.root(0, { 'go.mod', 'go.work', '.git' }),
   settings = {
     gopls = {
+      env = {
+        GOPATH    = vim.fn.expand('$HOME/go'),
+        GOROOT    = vim.fn.expand('$PREFIX/lib/go'),
+      },
       analyses        = { unusedparams = true, shadow = false, unusedwrite = false, useany = false },
       completeUnimported = true,
       completionBudget   = '100ms',
