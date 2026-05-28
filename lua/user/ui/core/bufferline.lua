@@ -8,7 +8,7 @@ require('bufferline').setup({
     options = {
         numbers          = 'ordinal',
         close_command    = 'bdelete! %d',
-        indicator        = { style = 'underline' },
+        indicator        = { style = 'icon' },
         modified_icon    = '●',
         separator_style  = 'thin',
         uniquify_names   = true,
