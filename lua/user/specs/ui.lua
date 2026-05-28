@@ -1,6 +1,10 @@
 return {
     {
-        'willothy/nvim-cokeline',
+        'akinsho/bufferline.nvim',
+        version = '*',
+        event = 'VeryLazy',
+        dependencies = { 'echasnovski/mini.icons', version = false },
+        config = function() require('user.ui.core.bufferline') end,
     },
     {
         'stevearc/dressing.nvim',

@@ -10,7 +10,6 @@ return {
     },
     {
         'ibhagwan/fzf-lua',
-        --     commit = '518ab7a',
         lazy = true,
     },
     {
