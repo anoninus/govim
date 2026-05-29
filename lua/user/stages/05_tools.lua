@@ -23,11 +23,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
     end,
 })
-
--- InsertEnter: once=true is fine here, these are global setups
-vim.api.nvim_create_autocmd('InsertEnter', {
-    once = true,
-    callback = function()
-        require('user.config.tools.autopairs.autopairs')
-    end,
-})

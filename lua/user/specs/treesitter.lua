@@ -12,16 +12,24 @@ return {
             -- install() is async; :wait() only needed for bootstrapping scripts
             -- safe to leave as-is if you want blocking install on first launch
             require('nvim-treesitter').install({
-                'lua', 'javascript', 'zig', 'go', 'python' -- 'golang' → 'go'
+                'html', 'css', 'javascript', 'typescript', 'tsx',
+                'go', 'gomod', 'gosum', 'gotmpl',
+                'json', 'yaml',
+                'bash',
             }):wait(300000)
 
             vim.api.nvim_create_autocmd('FileType', {
-                pattern = { 'lua', 'javascript', 'zig', 'go', 'python' },
+                pattern = {
+                    'html', 'css', 'javascript', 'typescript', 'tsx',
+                    'go', 'gomod', 'gosum', 'gotmpl',
+                    'json', 'yaml',
+                    'sh', 'bash',
+                },
                 callback = function()
                     vim.treesitter.start()
                     vim.wo[0][0].foldexpr   = 'v:lua.vim.treesitter.foldexpr()'
                     vim.wo[0][0].foldmethod = 'expr'
-                    vim.wo[0][0].foldlevel  = 99 -- open all folds by default
+                    vim.wo[0][0].foldlevel  = 99
                     vim.bo.indentexpr       = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end,
             })

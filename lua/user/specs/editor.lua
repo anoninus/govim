@@ -10,13 +10,6 @@ return {
         end,
     },
     {
-        'windwp/nvim-autopairs',
-        dependencies = {
-            'saghen/blink.cmp',
-        },
-        lazy = true,
-    },
-    {
         'numToStr/Comment.nvim',
         config = function ()
             require('Comment').setup({
