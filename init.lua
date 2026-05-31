@@ -61,52 +61,23 @@ load_stages()
 -- =========================================================
 -- 3. Post-init
 -- =========================================================
--- ===========================
--- Colorscheme Cycler
--- ===========================
-local schemes = { 'tokyonight-moon', 'catppuccin-latte' }
-local state_file = vim.fn.stdpath('data') .. '/colorscheme.txt'
-
--- Load saved scheme or fall back to first
-local function load_saved()
-  local f = io.open(state_file, 'r')
-  if f then
-    local saved = f:read('*l')
-    f:close()
-    -- validate it's one of our schemes
-    for _, name in ipairs(schemes) do
-      if name == saved then return saved end
+vim.cmd.colorscheme("tokyonight-moon")
+vim.api.nvim_create_autocmd("InsertCharPre", {
+  pattern = { "*.html", "*.xml", "*.jsx", "*.tsx" },
+  callback = function()
+    local char = vim.v.char
+    if char == ">" then
+      local line = vim.fn.getline(".")
+      local col = vim.fn.col(".") - 1
+      if line:sub(col, col) == "<" then
+        -- Find tag name and auto-close
+        local tag = line:match("<([%w%-]+)%s*$")
+        if tag then
+          vim.schedule(function()
+            vim.api.nvim_put({ "</" .. tag .. ">" }, "", true, true)
+          end)
+        end
+      end
     end
-  end
-  return schemes[1]
-end
-
-local function save_scheme(name)
-  local f = io.open(state_file, 'w')
-  if f then f:write(name) f:close() end
-end
-
-local function cycle_colorscheme()
-  local current = vim.g.colors_name
-  -- find exact match in our list
-  for i, name in ipairs(schemes) do
-    if name == current then
-      local next = schemes[(i % #schemes) + 1]
-      vim.cmd.colorscheme(next)
-      save_scheme(next)
-      vim.notify('colorscheme → ' .. next, vim.log.levels.INFO)
-      return
-    end
-  end
-  -- current theme is outside our list — jump to first
-  vim.cmd.colorscheme(schemes[1])
-  save_scheme(schemes[1])
-  vim.notify('colorscheme → ' .. schemes[1], vim.log.levels.INFO)
-end
-
--- Apply persisted scheme on startup
-vim.cmd.colorscheme(load_saved())
-
-vim.keymap.set('n', '<leader>C', cycle_colorscheme, { desc = 'Cycle colorscheme' })
-
-require("user.ui.core.dynamic_ui").setup()
+  end,
+})

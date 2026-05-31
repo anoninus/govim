@@ -2,9 +2,11 @@
 -- Formatting & Diagnostics
 -- ===========================
 return {
-  {
-    'stevearc/conform.nvim',
---     commit = 'c2526f1',
-    event = "VeryLazy",
-  },
+    {
+        'stevearc/conform.nvim',
+        event = "BufWritePre",
+        config = function()
+            require("user.config.tools.formatter")
+        end
+    },
 }

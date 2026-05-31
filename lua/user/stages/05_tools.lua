@@ -4,7 +4,7 @@
 
 -- Runs immediately — must be before LSP attaches
 require('user.config.tools.diagnostic')
-require('user.config.tools.formatter')
+-- require('user.config.tools.formatter')
 
 -- LspAttach: NO once=true, runs for every buffer that attaches
 vim.api.nvim_create_autocmd('LspAttach', {

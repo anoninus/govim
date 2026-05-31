@@ -7,7 +7,7 @@ return {
     },
     {
         'stevearc/dressing.nvim',
-        event = "VeryLazy",
+        event = "InsertEnter",
         opts = {
             input = {
                 enabled        = true,
