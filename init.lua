@@ -1,7 +1,6 @@
-vim.opt.shortmess:append('I')  -- skip intro
-vim.opt.shortmess:append('W')  -- skip warnings
 -- require("user.sys.profiler") -- Precedence = #1 (for profiling)
 require('user.sys.options') -- Precedence = #2
+require("user.ui.core.dynamic_ui")
 -- =========================================================
 -- 1. Safe require helper
 -- =========================================================
@@ -56,4 +55,3 @@ vim.cmd.colorscheme("tokyonight-moon")
 -- =========================================================
 -- 3. Post-init
 -- =========================================================
-require("user.ui.core.dynamic_ui")
