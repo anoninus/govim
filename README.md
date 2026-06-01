@@ -1,6 +1,6 @@
-# GoVim
+# GoVim or Golang Vim
 
-GoVim is a personal config. Termux oriented.
+Golang Vim is a personal neovim 0.12.1 tuned config.
 
 ## Mirrors
 
@@ -31,7 +31,7 @@ If you want the complete history:
 
 **From GitHub:**
 ```bash
-git clone git@github.com:anoninus/GoVim.git ~/.config/nvim
+git clone git@github.com:anoninus/govim.git ~/.config/nvim
 ```
 
 **From GitLab:**
