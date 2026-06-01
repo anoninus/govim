@@ -53,6 +53,14 @@ vim.keymap.set("n", "H", function()
         "Diagnostic float " .. (diagnostic_float_enabled and "enabled" or "disabled"),
         vim.log.levels.INFO
     )
+
+    -- Instantly show float on enable, don't wait for CursorHold
+    if diagnostic_float_enabled and not lsp_hover_visible() then
+        vim.diagnostic.open_float(nil, {
+            focusable = false,
+            close_events = { "CursorMoved", "CursorMovedI", "BufLeave", "InsertEnter" },
+        })
+    end
 end, { desc = "Toggle diagnostic float popup" })
 
 vim.api.nvim_create_user_command("DiagYankWhole", function()
