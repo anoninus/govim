@@ -34,6 +34,8 @@ miniclue.setup({
         { mode = 'n', keys = '"' },
         { mode = 'i', keys = '<C-r>' },
         { mode = 'c', keys = '<C-r>' },
+        { mode = 'x', keys = '[' },
+        { mode = 'x', keys = ']' },
     },
 
     clues = {
@@ -85,12 +87,36 @@ miniclue.setup({
         { mode = 'v', keys = '<Leader>r', desc = '󰛔 Replace' },
     },
 })
+-- ============================================
+-- ENABLE MINI.CLUE IN SPECIAL BUFFERS
+-- ============================================
+local special_ft = { "oil", "toggleterm", "neo-tree", "lazy", "mason" }
+local special_bt = { "terminal", "acwrite", "nofile", "prompt" }
+
+local function maybe_enable(buf)
+    local ft = vim.bo[buf].filetype
+    local bt = vim.bo[buf].buftype
+    local ft_match = vim.tbl_contains(special_ft, ft)
+    local bt_match = vim.tbl_contains(special_bt, bt)
+
+    if ft_match or bt_match then
+        vim.schedule(function()
+            pcall(require("mini.clue").enable_buf_triggers, buf)
+        end)
+    end
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter", "FileType", "TermOpen" }, {
+    callback = function(ev)
+        maybe_enable(ev.buf)
+    end,
+})
 
 -- ============================================
 -- BUFFERS
 -- ============================================
-vim.keymap.set('n', '<Leader>bs', '<Cmd>w<CR>',       { desc = 'Buffer Save [Only for Oil etc buffers]' })
-vim.keymap.set('n', '<Leader>bc', '<Cmd>%d<CR>',      { desc = 'Buffer Remove data [!RISKY!]' })
+vim.keymap.set('n', '<Leader>bs', '<Cmd>w<CR>', { desc = 'Buffer Save [Only for Oil etc buffers]' })
+vim.keymap.set('n', '<Leader>bc', '<Cmd>%d<CR>', { desc = 'Buffer Remove data [!RISKY!]' })
 vim.keymap.set('n', '<Leader>bd', '<Cmd>bdelete<CR>', { desc = 'Buffer Close [SAFE]' })
 vim.keymap.set('n', '<Leader>bb', function() require('fzf-lua').buffers() end, { desc = 'Pick buffer' })
 
@@ -108,40 +134,41 @@ vim.keymap.set('n', '<Leader>hn', '<Cmd>lua MiniNotify.show_history()<CR>', { de
 -- ============================================
 -- RELOAD
 -- ============================================
-vim.keymap.set('n', '<Leader>rr', '<Cmd>mksession! Session.vim | restart source Session.vim<CR>', { desc = 'Restart (Save & Restore Session)' })
-vim.keymap.set('n', '<Leader>rs', '<Cmd>restart<CR>',        { desc = 'Restart Safely (Fails if Unsaved)' })
+vim.keymap.set('n', '<Leader>rr', '<Cmd>mksession! Session.vim | restart source Session.vim<CR>',
+    { desc = 'Restart (Save & Restore Session)' })
+vim.keymap.set('n', '<Leader>rs', '<Cmd>restart<CR>', { desc = 'Restart Safely (Fails if Unsaved)' })
 vim.keymap.set('n', '<Leader>rf', '<Cmd>restart +qall!<CR>', { desc = 'Restart & Discard Unsaved Changes' })
 
 -- ============================================
 -- QUIT
 -- ============================================
-vim.keymap.set('n', '<Leader>qq',  '<Cmd>q<CR>',   { desc = 'Quit' })
-vim.keymap.set('n', '<Leader>qfq', '<Cmd>q!<CR>',  { desc = 'Force Quit' })
-vim.keymap.set('n', '<Leader>qfa', '<Cmd>qa<CR>',  { desc = 'Quit All' })
+vim.keymap.set('n', '<Leader>qq', '<Cmd>q<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<Leader>qfq', '<Cmd>q!<CR>', { desc = 'Force Quit' })
+vim.keymap.set('n', '<Leader>qfa', '<Cmd>qa<CR>', { desc = 'Quit All' })
 vim.keymap.set('n', '<Leader>qfw', '<Cmd>qa!<CR>', { desc = 'Force Quit All' })
 
 -- ============================================
 -- TOGGLES
 -- ============================================
-vim.keymap.set('n', '<Leader>un', '<Cmd>set number!<CR>',         { desc = 'Line Numbers' })
+vim.keymap.set('n', '<Leader>un', '<Cmd>set number!<CR>', { desc = 'Line Numbers' })
 vim.keymap.set('n', '<Leader>ur', '<Cmd>set relativenumber!<CR>', { desc = 'Relative Numbers' })
-vim.keymap.set('n', '<Leader>uw', '<Cmd>set wrap!<CR>',           { desc = 'Word Wrap' })
-vim.keymap.set('n', '<Leader>uc', '<Cmd>set cursorline!<CR>',     { desc = 'Cursor Line' })
-vim.keymap.set('n', '<Leader>uh', '<Cmd>set hlsearch!<CR>',       { desc = 'Highlight Search' })
+vim.keymap.set('n', '<Leader>uw', '<Cmd>set wrap!<CR>', { desc = 'Word Wrap' })
+vim.keymap.set('n', '<Leader>uc', '<Cmd>set cursorline!<CR>', { desc = 'Cursor Line' })
+vim.keymap.set('n', '<Leader>uh', '<Cmd>set hlsearch!<CR>', { desc = 'Highlight Search' })
 
 -- ============================================
 -- SAVE
 -- ============================================
-vim.keymap.set('n', '<Leader>ws',  '<Cmd>wall<CR>',   { desc = 'Save All' })
-vim.keymap.set('n', '<Leader>wq',  '<Cmd>wq<CR>',     { desc = 'Save & Quit' })
-vim.keymap.set('n', '<Leader>wfs', '<Cmd>w!<CR>',     { desc = 'Force Save' })
-vim.keymap.set('n', '<Leader>wfS', '<Cmd>wall!<CR>',  { desc = 'Force Save All' })
+vim.keymap.set('n', '<Leader>ws', '<Cmd>wall<CR>', { desc = 'Save All' })
+vim.keymap.set('n', '<Leader>wq', '<Cmd>wq<CR>', { desc = 'Save & Quit' })
+vim.keymap.set('n', '<Leader>wfs', '<Cmd>w!<CR>', { desc = 'Force Save' })
+vim.keymap.set('n', '<Leader>wfS', '<Cmd>wall!<CR>', { desc = 'Force Save All' })
 vim.keymap.set('n', '<Leader>wfa', '<Cmd>wqall!<CR>', { desc = 'Force Save & Quit All' })
 
 -- ============================================
 -- YANK
 -- ============================================
-vim.keymap.set('n', '<Leader>ya', '<Cmd>%y+<CR>',                    { desc = 'Yank All' })
+vim.keymap.set('n', '<Leader>ya', '<Cmd>%y+<CR>', { desc = 'Yank All' })
 vim.keymap.set('n', '<Leader>yp', "<Cmd>let @+ = expand('%:p')<CR>", { desc = 'Yank File Path' })
 vim.keymap.set('n', '<Leader>yf', "<Cmd>let @+ = expand('%:t')<CR>", { desc = 'Yank File Name' })
 
@@ -149,14 +176,14 @@ vim.keymap.set('n', '<Leader>yf', "<Cmd>let @+ = expand('%:t')<CR>", { desc = 'Y
 -- LAZY
 -- ============================================
 vim.keymap.set('n', '<Leader>llp', '<Cmd>Lazy profile<CR>', { desc = 'Profile' })
-vim.keymap.set('n', '<Leader>llu', '<Cmd>Lazy update<CR>',  { desc = 'Update' })
-vim.keymap.set('n', '<Leader>lls', '<Cmd>Lazy sync<CR>',    { desc = 'Sync' })
+vim.keymap.set('n', '<Leader>llu', '<Cmd>Lazy update<CR>', { desc = 'Update' })
+vim.keymap.set('n', '<Leader>lls', '<Cmd>Lazy sync<CR>', { desc = 'Sync' })
 
 -- ============================================
 -- LSP SERVER
 -- ============================================
-vim.keymap.set('n', '<Leader>lsi', '<Cmd>LspInfo<CR>',    { desc = 'Info' })
-vim.keymap.set('n', '<Leader>lsl', '<Cmd>LspLog<CR>',     { desc = 'Log' })
+vim.keymap.set('n', '<Leader>lsi', '<Cmd>LspInfo<CR>', { desc = 'Info' })
+vim.keymap.set('n', '<Leader>lsl', '<Cmd>LspLog<CR>', { desc = 'Log' })
 vim.keymap.set('n', '<Leader>lsr', '<Cmd>LspRestart<CR>', { desc = 'Restart' })
 
 -- ============================================
@@ -197,4 +224,3 @@ end
 vim.api.nvim_create_user_command('CheckKeymaps', check_leader_conflicts, {
     desc = 'Check for leader keymap conflicts',
 })
-
