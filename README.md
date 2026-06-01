@@ -6,7 +6,7 @@ GoVim is a personal config. Termux oriented.
 
 | Platform | URL |
 |----------|-----|
-| GitHub   | https://github.com/anoninus/GoVim |
+| GitHub   | https://github.com/anoninus/govim |
 | GitLab   | https://gitlab.com/anoninusxt/govim |
 
 ## Clone
