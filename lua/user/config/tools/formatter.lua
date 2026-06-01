@@ -116,13 +116,6 @@ vim.keymap.set('n', '<leader>uf', toggle_conform, {
     noremap = true,
     silent = true
 })
-
-vim.keymap.set('n', '<leader>tt', format_file, {
-    desc = 'Format file with conform',
-    noremap = true,
-    silent = true
-})
-
 -- Also support visual mode formatting
 vim.keymap.set('v', '<leader>vf', function()
     if vim.g.conform_enabled then
