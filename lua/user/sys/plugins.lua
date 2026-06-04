@@ -1,6 +1,3 @@
--- Enable Lua module caching
-vim.loader.enable()
-
 -- =====================
 -- (1) Bootstrap lazy.nvim
 -- =====================

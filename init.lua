@@ -1,4 +1,4 @@
--- require("user.sys.profiler") -- Precedence = #1 (for profiling)
+vim.loader.enable()
 require('user.sys.options') -- Precedence = #2
 require('user.sys')
 require('user.mini')
