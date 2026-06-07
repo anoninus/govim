@@ -92,14 +92,67 @@ function M.setup()
 
     -- ── Diagnostics (virtual text + signs unified) ─────────────────────────
     set_hls({
-        { "DiagnosticVirtualTextError", { fg = err_fg, bg = bg, italic = true } },
-        { "DiagnosticVirtualTextWarn", { fg = warn_fg, bg = bg, italic = true } },
-        { "DiagnosticVirtualTextInfo", { fg = info_fg, bg = bg, italic = true } },
-        { "DiagnosticVirtualTextOk", { fg = ok_fg, bg = bg, italic = true } },
+        { "DiagnosticVirtualTextError", { fg = err_fg, bg = bg, italic = false } },
+        { "DiagnosticVirtualTextWarn", { fg = warn_fg, bg = bg, italic = false } },
+        { "DiagnosticVirtualTextInfo", { fg = info_fg, bg = bg, italic = false } },
+        { "DiagnosticVirtualTextOk", { fg = ok_fg, bg = bg, italic = false } },
         { "DiagnosticSignError", { fg = err_fg, bold = true } },
         { "DiagnosticSignWarn", { fg = warn_fg, bold = true } },
         { "DiagnosticSignInfo", { fg = info_fg, bold = true } },
         { "DiagnosticSignOk", { fg = ok_fg, bold = true } },
+    })
+    -- ── blink.cmp ─────────────────────────────────────────────────────────────
+    set_hls({
+        -- Menu window
+        { "BlinkCmpMenu", { bg = bg, fg = fg } },
+        { "BlinkCmpMenuBorder", { fg = border_fg, bg = bg, bold = true } },
+        { "BlinkCmpMenuSelection", { bg = sel_bg, bold = true } },
+
+        -- Matched characters
+        { "BlinkCmpLabelMatch", { fg = accent, bold = true } },
+
+        -- Label / detail / description
+        { "BlinkCmpLabel", { fg = fg } },
+        { "BlinkCmpLabelDetail", { fg = muted, italic = false } },
+        { "BlinkCmpLabelDescription", { fg = muted, italic = false } },
+
+        -- Deprecated items
+        { "BlinkCmpLabelDeprecated", { fg = muted, strikethrough = true } },
+
+        -- Ghost text (inline preview)
+        { "BlinkCmpGhostText", { fg = muted, italic = false } },
+
+        -- Signature-help float
+        { "BlinkCmpSignatureHelpBorder", { fg = border_fg, bg = bg, bold = true } },
+        { "BlinkCmpSignatureHelp", { bg = bg, fg = fg } },
+        { "BlinkCmpSignatureHelpActiveParameter", { fg = accent, bold = true, underline = true } },
+
+        -- Kind icons — one entry per LSP kind using your palette colours
+        { "BlinkCmpKindText", { fg = fg } },
+        { "BlinkCmpKindMethod", { fg = accent } },
+        { "BlinkCmpKindFunction", { fg = accent } },
+        { "BlinkCmpKindConstructor", { fg = accent } },
+        { "BlinkCmpKindField", { fg = info_fg } },
+        { "BlinkCmpKindVariable", { fg = info_fg } },
+        { "BlinkCmpKindProperty", { fg = info_fg } },
+        { "BlinkCmpKindClass", { fg = warn_fg } },
+        { "BlinkCmpKindInterface", { fg = warn_fg } },
+        { "BlinkCmpKindStruct", { fg = warn_fg } },
+        { "BlinkCmpKindEnum", { fg = warn_fg } },
+        { "BlinkCmpKindEnumMember", { fg = ok_fg } },
+        { "BlinkCmpKindModule", { fg = border_fg } },
+        { "BlinkCmpKindUnit", { fg = ok_fg } },
+        { "BlinkCmpKindValue", { fg = ok_fg } },
+        { "BlinkCmpKindKeyword", { fg = err_fg } },
+        { "BlinkCmpKindSnippet", { fg = ok_fg, italic = false } },
+        { "BlinkCmpKindColor", { fg = ok_fg } },
+        { "BlinkCmpKindFile", { fg = muted } },
+        { "BlinkCmpKindReference", { fg = muted } },
+        { "BlinkCmpKindFolder", { fg = muted } },
+        { "BlinkCmpKindEvent", { fg = warn_fg } },
+        { "BlinkCmpKindOperator", { fg = fg } },
+        { "BlinkCmpKindTypeParameter", { fg = warn_fg } },
+        { "BlinkCmpKindCopilot", { fg = ok_fg, italic = false } },
     })
 end
 
