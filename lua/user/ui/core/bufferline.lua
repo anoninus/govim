@@ -5,8 +5,11 @@ require('mini.tabline').setup({
 })
 
 -- Buffer navigation
-vim.keymap.set('n', '<S-Tab>', '<cmd>bprevious<cr>',  { silent = true, desc = 'Previous buffer' })
-vim.keymap.set('n', '<Tab>',   '<cmd>bnext<cr>',      { silent = true, desc = 'Next buffer' })
+-- All modes except operator-pending (use mode list)
+local modes = { 'n', 'i', 'v', 'c', 't' }  -- normal, insert, visual, command, terminal
+
+vim.keymap.set(modes, '<PageDown>',   '<cmd>bprevious<cr>', { silent = true, desc = 'Previous buffer' })
+vim.keymap.set(modes, '<PageUp>', '<cmd>bnext<cr>',      { silent = true, desc = 'Next buffer' })
 
 -- Buffer reordering — mini.tabline has no move commands,
 -- these swap via bufferline order workaround using native cmds
