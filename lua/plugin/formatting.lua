@@ -10,7 +10,7 @@ return {
             },
         },
         config = function()
-            require("user.config.tools.formatter")
+            require("tools.formatter")
         end,
     },
 }

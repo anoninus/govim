@@ -24,9 +24,30 @@ return {
             },
         },
     },
+    -- lua/plugins/fzf-lua.lua
     {
         "ibhagwan/fzf-lua",
-        lazy = true,
+        keys = {
+            { "<leader>fz", desc = "FzfLua" },
+            { "<leader>fd", desc = "Find files CWD" },
+            { "<leader>fo", desc = "Recent files" },
+            { "<leader>fc", desc = "Find config files" },
+            { "<leader>fih", desc = "Find Files in HOME" },
+            { "<leader>fir", desc = "Find Files in ROOT" },
+            { "<leader>dw", desc = "Workspace diagnostics" },
+            { "<leader>gd", desc = "Live grep CWD" },
+            { "<leader>gc", desc = "Grep config" },
+            { "<leader>gih", desc = "Grep home" },
+            { "<leader>gir", desc = "Grep root" },
+            { "<leader>Gc", desc = "Git commits" },
+            { "<leader>Gs", desc = "Git status" },
+            { "<leader>ef", desc = "FZF files in typed dir" },
+            { "<leader>eg", desc = "FZF grep in typed dir" },
+        },
+
+        config = function()
+            require("tools.fzf")
+        end,
     },
     {
         url = "https://codeberg.org/andyg/leap.nvim",
