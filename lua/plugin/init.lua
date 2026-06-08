@@ -1,13 +1,13 @@
 -- =====================
 -- (1) Bootstrap lazy.nvim
 -- =====================
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
-        'git',
-        'clone',
-        '--filter=blob:none',
-        'https://github.com/folke/lazy.nvim.git',
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
         lazypath,
     })
 end
@@ -15,20 +15,20 @@ vim.opt.rtp:prepend(lazypath)
 -- =====================
 -- Plugins (lazy.nvim)
 -- =====================
-require('lazy').setup({
+require("lazy").setup({
     spec = {
-        { import = 'plugin.core' },
-        { import = 'plugin.snippets' },
-        { import = 'plugin.completion' },
-        { import = 'plugin.lsp' },
-        { import = 'plugin.formatting' },
-        { import = 'plugin.treesitter' },
-        { import = 'plugin.explorer' },
-        { import = 'plugin.editor' },
-        { import = 'plugin.utility' },
-        { import = 'plugin.mini' },
-        { import = 'plugin.colorschemes' },
-        { import = 'plugin.autopairs' },
+        { import = "plugin.core" },
+        { import = "plugin.snippets" },
+        { import = "plugin.completion" },
+        { import = "plugin.lsp" },
+        { import = "plugin.formatting" },
+        { import = "plugin.treesitter" },
+        { import = "plugin.explorer" },
+        { import = "plugin.editor" },
+        { import = "plugin.utility" },
+        { import = "plugin.mini" },
+        { import = "plugin.colorschemes" },
+        { import = "plugin.autopairs" },
     },
 
     -- ============================
@@ -38,7 +38,7 @@ require('lazy').setup({
 
     git = {
         timeout = 300,
-        url_format = 'https://github.com/%s.git',
+        url_format = "https://github.com/%s.git",
     },
 
     install = {
@@ -70,14 +70,14 @@ require('lazy').setup({
             reset = true,
             paths = {},
             disabled_plugins = {
-                'gzip',
-                'matchit',
-                'matchparen',
-                'netrwPlugin',
-                'tarPlugin',
-                'tohtml',
-                'tutor',
-                'zipPlugin',
+                "gzip",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
             },
         },
     },
@@ -90,25 +90,25 @@ require('lazy').setup({
     ui = {
         size = { width = 0.88, height = 0.9 },
         wrap = true,
-        title = '   Lazy Plugin Manager ',
+        title = "   Lazy Plugin Manager ",
         backdrop = 70,
         icons = {
-            cmd        = '󰘳 ',
-            config     = '󰒓 ',
-            event      = '󰚌 ',
-            ft         = '󰈙 ',
-            init       = '󰒓 ',
-            import     = '󰋺 ',
-            keys       = '󰌌 ',
-            lazy       = '󰒲 ',
-            loaded     = '󰄬 ',
-            not_loaded = '󰄱 ',
-            plugin     = '󰂖 ',
-            runtime    = '󰆦 ',
-            source     = '󰉋 ',
-            start      = '󰐊 ',
-            task       = '󰆕 ',
-            list       = { '󰬪', '󰬜', '󰬐', '󰬅' },
-        }
+            cmd = "󰘳 ",
+            config = "󰒓 ",
+            event = "󰚌 ",
+            ft = "󰈙 ",
+            init = "󰒓 ",
+            import = "󰋺 ",
+            keys = "󰌌 ",
+            lazy = "󰒲 ",
+            loaded = "󰄬 ",
+            not_loaded = "󰄱 ",
+            plugin = "󰂖 ",
+            runtime = "󰆦 ",
+            source = "󰉋 ",
+            start = "󰐊 ",
+            task = "󰆕 ",
+            list = { "󰬪", "󰬜", "󰬐", "󰬅" },
+        },
     },
 })

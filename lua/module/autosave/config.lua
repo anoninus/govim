@@ -1,4 +1,4 @@
-require("user.config.ide.ide.local_module.autosave_module").setup({
+require("module.autosave.module").setup({
     enabled = true,
     allow = { "all" },
     disallow = { "oil", "terminal", "undotree" },
