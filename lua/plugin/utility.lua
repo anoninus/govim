@@ -27,21 +27,31 @@ return {
         end,
     },
     {
-        url = "https://github.com/nvimdev/indentmini.nvim",
-        cmd = { "IndentToggle", "IndentEnable", "IndentDisable" },
-        keys = {
-            { "<Leader>ti", "<Cmd>IndentToggle<CR>", desc = "Toggle indent guides" },
-        },
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
         lazy = true,
-        config = function()
-            require("indentmini").setup({
-                only_current = false,
-                enabled = false,
+        keys = {
+            { "<leader>ti", "<cmd>IBLToggle<cr>", desc = "Toggle Indent Lines" },
+        },
+        opts = {
+            indent = {
                 char = "│",
-                minlevel = 0,
-                exclude = { "markdown", "help", "text", "rst" },
-                exclude_nodetype = { "string", "comment" },
-            })
-        end,
+                tab_char = "│",
+            },
+            scope = {
+                enabled = false,
+            },
+            exclude = {
+                filetypes = {
+                    "help",
+                    "dashboard",
+                    "lazy",
+                    "mason",
+                    "notify",
+                    "toggleterm",
+                    "lazyterm",
+                },
+            },
+        },
     },
 }
