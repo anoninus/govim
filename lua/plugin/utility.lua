@@ -26,4 +26,22 @@ return {
             vim.g.undotree_RelativeTimestamp = 1 -- "2 min ago" instead of epoch
         end,
     },
+    {
+        url = "https://github.com/nvimdev/indentmini.nvim",
+        cmd = { "IndentToggle", "IndentEnable", "IndentDisable" },
+        keys = {
+            { "<Leader>ti", "<Cmd>IndentToggle<CR>", desc = "Toggle indent guides" },
+        },
+        lazy = true,
+        config = function()
+            require("indentmini").setup({
+                only_current = false,
+                enabled = false,
+                char = "│",
+                minlevel = 0,
+                exclude = { "markdown", "help", "text", "rst" },
+                exclude_nodetype = { "string", "comment" },
+            })
+        end,
+    },
 }
