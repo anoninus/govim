@@ -17,7 +17,7 @@ return {
         },
         config = function()
             vim.g.undotree_WindowLayout = 2 -- tree on left, diff below
-            vim.g.undotree_SplitWidth = 40
+            vim.g.undotree_SplitWidth = 20
             vim.g.undotree_DiffpanelHeight = 12
             vim.g.undotree_SetFocusWhenToggle = 1 -- auto-focus the tree on open
             vim.g.undotree_ShortIndicators = 1 -- compact time indicators
