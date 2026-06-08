@@ -1,7 +1,8 @@
 return {
     {
         "folke/tokyonight.nvim",
-        lazy = false,
+        lazy = true,
+        event = "BufReadPre",
         priority = 1000,
         opts = {
             styles = {
