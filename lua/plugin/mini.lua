@@ -6,14 +6,14 @@ return {
         "echasnovski/mini.clue",
         event = "VeryLazy",
         config = function()
-            require("user.mini.miniclues")
+            require("mini.miniclues")
         end,
     },
     {
         "nvim-mini/mini.notify",
         event = "VeryLazy",
         config = function()
-            require("user.mini.mini_notify")
+            require("mini.mini_notify")
         end,
     },
     {
@@ -21,7 +21,7 @@ return {
         version = false,
         event = "VeryLazy",
         config = function()
-            require("user.mini.mini_indentscope")
+            require("mini.mini_indentscope")
         end,
     },
     {
@@ -63,7 +63,7 @@ return {
         version = false,
         event = "VeryLazy",
         config = function()
-            require("user.mini.mini_bufferline")
+            require("mini.mini_bufferline")
         end,
     },
 
