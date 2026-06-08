@@ -1,6 +1,6 @@
 require("user.sys.options")
+require("plugin")
 require("user.sys.env")
-require("user.sys.plugins")
 require("user.sys.paste_from_sys")
 vim.schedule(function()
     require("user.mini.mini_notify")
