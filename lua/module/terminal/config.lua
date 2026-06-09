@@ -116,7 +116,7 @@ end, { desc = "Toggle listed terminal", silent = true })
 -------------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function(ev)
-    vim.keymap.set("t", "<Esc>", "<C-\\><C-n>",
+    vim.keymap.set("t", "<S-Tab>", "<C-\\><C-n>",
       { buffer = ev.buf, desc = "Exit terminal mode" })
   end,
 })
