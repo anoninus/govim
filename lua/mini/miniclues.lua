@@ -57,7 +57,7 @@ miniclue.setup({
         { mode = "n", keys = "<Leader>e", desc = "󰍉 Fzf Flexible" },
         { mode = "n", keys = "<Leader>f", desc = "󰍉 Find Files" },
         { mode = "n", keys = "<Leader>g", desc = "󰍉 Grep" },
-        { mode = "n", keys = "<Leader>G", desc = "󰊢 GIT" },
+        { mode = "n", keys = "<Leader>n", desc = "󰊢 Neogit" },
         { mode = "n", keys = "<Leader>h", desc = "󰋚 History" },
         { mode = "n", keys = "<Leader>l", desc = "󰒲 Lazy / LSP" },
         { mode = "n", keys = "<Leader>o", desc = "󰇥 Yazi" },
@@ -65,7 +65,7 @@ miniclue.setup({
         { mode = "n", keys = "<Leader>q", desc = "󰗼 Quit" },
         { mode = "n", keys = "<Leader>r", desc = "󰑓 Reload" },
         { mode = "n", keys = "<Leader>s", desc = "󰆓 Sessions" },
-        { mode = "n", keys = "<Leader>t", desc = "󰆍 Task" },
+        { mode = "n", keys = "<Leader>t", desc = "󰉿 Format" },
         { mode = "n", keys = "<Leader>u", desc = "󰔡 Toggles" },
         { mode = "n", keys = "<Leader>w", desc = "󰆓 Advanced Save" },
         { mode = "n", keys = "<Leader>y", desc = "󰅎 Yank" },
@@ -124,31 +124,33 @@ end, { desc = "Pick buffer" })
 -- GIT
 -- ============================================
 vim.keymap.set("n", "<leader>nf", function()
-  local cmd = "fd --hidden --no-ignore --type d --glob '.git' ~ --max-depth 5 | xargs -I{} dirname {}"
-  local repos = {}
-  vim.fn.jobstart(cmd, {
-    stdout_buffered = true,
-    on_stdout = function(_, data)
-      for _, line in ipairs(data) do
-        if line ~= "" then table.insert(repos, line) end
-      end
-    end,
-    on_exit = function()
-      vim.schedule(function()
-        require("fzf-lua").fzf_exec(repos, {
-          prompt = "  Git Repo> ",
-          preview = "git -C {} log --oneline --color -10",
-          actions = {
-            ["default"] = function(selected)
-              if selected and selected[1] then
-                require("neogit").open({ cwd = selected[1] })
-              end
-            end,
-          },
-        })
-      end)
-    end,
-  })
+    local cmd = "fd --hidden --no-ignore --type d --glob '.git' ~ --max-depth 5 | xargs -I{} dirname {}"
+    local repos = {}
+    vim.fn.jobstart(cmd, {
+        stdout_buffered = true,
+        on_stdout = function(_, data)
+            for _, line in ipairs(data) do
+                if line ~= "" then
+                    table.insert(repos, line)
+                end
+            end
+        end,
+        on_exit = function()
+            vim.schedule(function()
+                require("fzf-lua").fzf_exec(repos, {
+                    prompt = "  Git Repo> ",
+                    preview = "git -C {} log --oneline --color -10",
+                    actions = {
+                        ["default"] = function(selected)
+                            if selected and selected[1] then
+                                require("neogit").open({ cwd = selected[1] })
+                            end
+                        end,
+                    },
+                })
+            end)
+        end,
+    })
 end, { desc = "Git picker [Neogit]" })
 -- ============================================
 -- NOTIFICATIONS
@@ -183,7 +185,6 @@ vim.keymap.set("n", "<Leader>ur", "<Cmd>set relativenumber!<CR>", { desc = "Rela
 vim.keymap.set("n", "<Leader>uw", "<Cmd>set wrap!<CR>", { desc = "Word Wrap" })
 vim.keymap.set("n", "<Leader>uc", "<Cmd>set cursorline!<CR>", { desc = "Cursor Line" })
 vim.keymap.set("n", "<Leader>uh", "<Cmd>set hlsearch!<CR>", { desc = "Highlight Search" })
-
 -- ============================================
 -- SAVE
 -- ============================================

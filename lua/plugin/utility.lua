@@ -29,10 +29,8 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        lazy = true,
-        keys = {
-            { "<leader>ti", "<cmd>IBLToggle<cr>", desc = "Toggle Indent Lines" },
-        },
+        lazy = true, 
+        event = "VeryLazy",
         opts = {
             indent = {
                 char = "│",
