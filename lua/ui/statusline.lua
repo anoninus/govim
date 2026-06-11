@@ -13,14 +13,13 @@ _G.lsp_status = function()
     local i = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 
     local diag = ""
-    if e > 0 then diag = diag .. " 󰅚 " .. e end
-    if w > 0 then diag = diag .. " 󰀪 " .. w end
-    if h > 0 then diag = diag .. " 󰌶 " .. h end
-    if i > 0 then diag = diag .. "  " .. i end
+    if e > 0 then diag = diag .. "%#DiagnosticError# 󰅚 " .. e .. "%*" end
+    if w > 0 then diag = diag .. "%#DiagnosticWarn# 󰀪 " .. w .. "%*" end
+    if h > 0 then diag = diag .. "%#DiagnosticHint# 󰌶 " .. h .. "%*" end
+    if i > 0 then diag = diag .. "%#DiagnosticInfo#  " .. i .. "%*" end
 
     return "󰒋 " .. table.concat(names, ", ") .. diag
 end
-
 local function get_path_prefixes()
     local home = vim.uv.os_homedir()
     local prefixes = {}
