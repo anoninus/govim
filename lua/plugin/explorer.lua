@@ -8,7 +8,6 @@ return {
         keys = {
             { "-", "<cmd>Oil<CR>", mode = "n", desc = "Open parent directory" },
         },
-        event = "VeryLazy",
         opts = {
             lsp_file_methods = {
                 enabled = false,
