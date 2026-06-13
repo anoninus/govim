@@ -61,16 +61,29 @@ local function listed_toggle()
   end
 
   if listed_buf_exists() and vim.api.nvim_get_current_buf() == listed_term.buf then
-    vim.cmd("bprevious")
+    vim.cmd("tabclose")
     return
   end
 
   if listed_buf_exists() then
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if vim.api.nvim_win_get_buf(win) == listed_term.buf then
+        vim.api.nvim_set_current_win(win)
+        vim.cmd("startinsert")
+        return
+      end
+    end
+    vim.cmd("tabnew")
+    local blank = vim.api.nvim_get_current_buf()
+    vim.bo[blank].bufhidden = "wipe"
     vim.api.nvim_win_set_buf(0, listed_term.buf)
   else
+    vim.cmd("tabnew")
+    local blank = vim.api.nvim_get_current_buf()
+    vim.bo[blank].bufhidden = "wipe"
     vim.cmd("terminal")
     listed_term.buf = vim.api.nvim_get_current_buf()
-    vim.bo[listed_term.buf].buflisted = true
+    vim.bo[listed_term.buf].buflisted = false
     vim.api.nvim_buf_attach(listed_term.buf, false, {
       on_detach = function()
         listed_term.buf = nil
@@ -102,14 +115,9 @@ for _, mode in ipairs({ "n", "i", "t", "v" }) do
   vim.keymap.set(mode, "<F1>", with_escape(mode, split_toggle), { desc = "Toggle split terminal", silent = true })
 end
 
-vim.keymap.set("n", "<F12>", listed_toggle, { desc = "Toggle listed terminal", silent = true })
-vim.keymap.set("t", "<F12>", function()
-  vim.api.nvim_feedkeys(
-    vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true),
-    "n", false
-  )
-  vim.schedule(listed_toggle)
-end, { desc = "Toggle listed terminal", silent = true })
+for _, mode in ipairs({ "n", "i", "t" }) do
+  vim.keymap.set(mode, "<F12>", with_escape(mode, listed_toggle), { desc = "Toggle listed terminal", silent = true })
+end
 
 -------------------------------------------------------------------------------
 -- TermOpen autocmds
