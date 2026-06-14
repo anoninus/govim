@@ -148,6 +148,13 @@ return {
         cmd = "Neogit",
         keys = {
             { "<leader>ng", "<cmd>Neogit<cr>", desc = "Neogit" },
+            {
+                "<leader>nc",
+                function()
+                    require("neogit").open({ cwd = vim.fn.stdpath("config") })
+                end,
+                desc = "Neogit config dir",
+            },
         },
         dependencies = {
             { "nvim-lua/plenary.nvim", lazy = true },
