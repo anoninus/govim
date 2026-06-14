@@ -1,68 +1,3 @@
-vim.diagnostic.config({
-    signs = {
-        text = {
-            [vim.diagnostic.severity.ERROR] = "●",
-            [vim.diagnostic.severity.WARN]  = "●",
-            [vim.diagnostic.severity.INFO]  = "●",
-            [vim.diagnostic.severity.HINT]  = "●",
-        },
-    },
-    virtual_text = false,
-    underline = false,
-    update_in_insert = false,
-    severity_sort = true,
-    float = {
-        focusable = false,
-        style = "minimal",
-        source = "always",
-        header = "",
-        prefix = "",
-    },
-})
-
-local function lsp_hover_visible()
-    for _, winid in ipairs(vim.api.nvim_list_wins()) do
-        if vim.api.nvim_win_get_config(winid).relative ~= "" then
-            local ft = vim.bo[vim.api.nvim_win_get_buf(winid)].filetype
-            if ft == "markdown" then return true end
-        end
-    end
-    return false
-end
-
-local diagnostic_float_enabled = false
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-        vim.api.nvim_create_autocmd("CursorHold", {
-            buffer = args.buf,
-            callback = function()
-                if not diagnostic_float_enabled or lsp_hover_visible() then return end
-                vim.diagnostic.open_float(nil, {
-                    focusable = false,
-                    close_events = { "CursorMoved", "CursorMovedI", "BufLeave", "InsertEnter" },
-                })
-            end,
-        })
-    end,
-})
-
-vim.keymap.set("n", "H", function()
-    diagnostic_float_enabled = not diagnostic_float_enabled
-    vim.notify(
-        "Diagnostic float " .. (diagnostic_float_enabled and "enabled" or "disabled"),
-        vim.log.levels.INFO
-    )
-
-    -- Instantly show float on enable, don't wait for CursorHold
-    if diagnostic_float_enabled and not lsp_hover_visible() then
-        vim.diagnostic.open_float(nil, {
-            focusable = false,
-            close_events = { "CursorMoved", "CursorMovedI", "BufLeave", "InsertEnter" },
-        })
-    end
-end, { desc = "Toggle diagnostic float popup" })
-
 vim.api.nvim_create_user_command("DiagYankWhole", function()
     local diags = vim.diagnostic.get(0)
     if vim.tbl_isempty(diags) then
@@ -103,3 +38,24 @@ vim.api.nvim_create_user_command("DiagYankWorkspace", function()
     vim.fn.setreg('"', table.concat(lines, "\n"))
     print("Workspace diagnostics yanked")
 end, {})
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "●",
+            [vim.diagnostic.severity.WARN]  = "●",
+            [vim.diagnostic.severity.INFO]  = "●",
+            [vim.diagnostic.severity.HINT]  = "●",
+        },
+    },
+    virtual_text = false,
+    underline = false,
+    update_in_insert = false,
+    severity_sort = true,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    vim.keymap.set("n", "<Tab>",   function() vim.diagnostic.jump({ count = 1,  float = false }) end, { buffer = args.buf, desc = "Next diagnostic" })
+    vim.keymap.set("n", "<S-Tab>", function() vim.diagnostic.jump({ count = -1, float = false }) end, { buffer = args.buf, desc = "Prev diagnostic" })
+  end,
+})
