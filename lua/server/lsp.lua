@@ -4,10 +4,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if not client then return end
 
-    if client.name == 'marksman' or client.name == 'gdscript' then
-      client.server_capabilities.documentHighlightProvider = false
-    end
-
     local opts = { buffer = ev.buf, silent = true }
 
     vim.keymap.set('n', 'K', function()
@@ -38,3 +34,10 @@ end, { desc = 'Toggle Inlay Hints' })
 --   end,
 -- })
 --
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+})
